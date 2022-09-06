@@ -34,6 +34,7 @@ public class UsuarioController {
     @DeleteMapping("/deletarUsuario/{id}")
     public boolean DeletarUsuarioPeloId(@PathVariable("id") int id) {
         return UsuarioRepository.deletar(id);
+        
     }
 
     // método POST

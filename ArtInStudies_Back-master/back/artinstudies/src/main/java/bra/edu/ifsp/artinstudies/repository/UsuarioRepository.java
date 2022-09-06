@@ -42,7 +42,8 @@ public class UsuarioRepository {
     }
 
     public static boolean deletar(int id) {
-        UsuarioRepository.repo.usuarios.remove(id-1);
+        Usuario userToDelete = getById(id);
+        UsuarioRepository.repo.usuarios.remove(userToDelete);
         return true;
     }
 }
