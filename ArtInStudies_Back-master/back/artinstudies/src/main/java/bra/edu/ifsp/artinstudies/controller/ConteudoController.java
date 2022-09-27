@@ -12,39 +12,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import bra.edu.ifsp.artinstudies.model.Usuario;
-import bra.edu.ifsp.artinstudies.repository.UsuarioRepository;
+import bra.edu.ifsp.artinstudies.model.Conteudo;
+import bra.edu.ifsp.artinstudies.repository.ConteudoRepository;
 
 @CrossOrigin
 @RestController
-public class UsuarioController {
-@Autowired
-UsuarioRepository repo;
+public class ConteudoController {
+    @Autowired
+    ConteudoRepository repo;
+
     // método GET
-    @GetMapping("/usuario")
-    public List<Usuario> listaUsuarios() {
-        return (List<Usuario>) repo.findAll();
+    @GetMapping("/conteudo")
+    public List<Conteudo> listaConteudos() {
+        return (List<Conteudo>) repo.findAll();
 
     }
 
     // método GET por ID
-    @GetMapping("/usuario/{id}")
-    public Optional<Usuario> RecuperaUsuarioPeloId(@PathVariable("id") Long id) {
+    @GetMapping("/conteudo/{id}")
+    public Optional<Conteudo> RecuperaConteudoPeloId(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
-    //método DELETE
+    // método DELETE
 
-    @DeleteMapping("/deletarUsuario/{id}")
-    public void DeletarUsuarioPeloId(@PathVariable("id") Long id) {
+    @DeleteMapping("/deletarConteudo/{id}")
+    public void DeletarConteudoPeloId(@PathVariable("id") Long id) {
         repo.deleteById(id);
-        
+
     }
 
     // método POST
 
-    @PostMapping("/usuario")
-    public void addUsuario(@RequestBody Usuario usuario) {
-        repo.save(usuario);
+    @PostMapping("/conteudo")
+    public void addConteudo(@RequestBody Conteudo conteudo) {
+        repo.save(conteudo);
     }
 }

@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import bra.edu.ifsp.artinstudies.model.Usuario;
-import bra.edu.ifsp.artinstudies.repository.UsuarioRepository;
+import bra.edu.ifsp.artinstudies.model.Livro;
+import bra.edu.ifsp.artinstudies.repository.LivroRepository;
 
 @CrossOrigin
 @RestController
-public class UsuarioController {
+public class LivroController {
 @Autowired
-UsuarioRepository repo;
+LivroRepository repo;
     // método GET
-    @GetMapping("/usuario")
-    public List<Usuario> listaUsuarios() {
-        return (List<Usuario>) repo.findAll();
+    @GetMapping("/livro")
+    public List<Livro> listaLivros() {
+        return (List<Livro>) repo.findAll();
 
     }
 
     // método GET por ID
-    @GetMapping("/usuario/{id}")
-    public Optional<Usuario> RecuperaUsuarioPeloId(@PathVariable("id") Long id) {
+    @GetMapping("/livro/{id}")
+    public Optional<Livro> RecuperaLivroPeloId(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
     //método DELETE
 
-    @DeleteMapping("/deletarUsuario/{id}")
-    public void DeletarUsuarioPeloId(@PathVariable("id") Long id) {
+    @DeleteMapping("/deletarLivro/{id}")
+    public void DeletarLivroPeloId(@PathVariable("id") Long id) {
         repo.deleteById(id);
         
     }
 
     // método POST
 
-    @PostMapping("/usuario")
-    public void addUsuario(@RequestBody Usuario usuario) {
-        repo.save(usuario);
+    @PostMapping("/livro")
+    public void addLivro(@RequestBody Livro livro) {
+        repo.save(livro);
     }
 }

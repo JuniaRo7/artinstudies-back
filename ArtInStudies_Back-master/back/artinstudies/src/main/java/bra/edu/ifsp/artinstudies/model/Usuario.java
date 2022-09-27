@@ -1,20 +1,58 @@
 package bra.edu.ifsp.artinstudies.model;
 
-public class Usuario {
-    private static int idCounter = 0;
+import java.util.List;
 
-    private String nome, email, senha;
-    private int id;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String nome, email, senha, data_cadastro;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_usuario")
+    @JsonManagedReference
+    private List<Conteudo> conteudos;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_perfil")
+    @JsonManagedReference
+    private Perfil perfil;
 
     public Usuario() {
-        this.id = ++Usuario.idCounter;
+
     }
 
-    public Usuario(String nome, String email, String senha) {
-        this.id = ++Usuario.idCounter;
+    public Usuario(Long id, String nome, String email, String senha, String data_cadastro) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.data_cadastro = data_cadastro;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public void setData_cadastro(String data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 
     public String getNome() {
@@ -35,10 +73,6 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setNome(String nome) {

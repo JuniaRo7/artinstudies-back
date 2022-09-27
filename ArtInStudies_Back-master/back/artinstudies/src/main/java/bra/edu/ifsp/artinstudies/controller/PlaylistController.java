@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import bra.edu.ifsp.artinstudies.model.Usuario;
-import bra.edu.ifsp.artinstudies.repository.UsuarioRepository;
+import bra.edu.ifsp.artinstudies.model.Playlist;
+import bra.edu.ifsp.artinstudies.repository.PlaylistRepository;
 
 @CrossOrigin
 @RestController
-public class UsuarioController {
+public class PlaylistController {
 @Autowired
-UsuarioRepository repo;
+PlaylistRepository repo;
     // método GET
-    @GetMapping("/usuario")
-    public List<Usuario> listaUsuarios() {
-        return (List<Usuario>) repo.findAll();
+    @GetMapping("/playlist")
+    public List<Playlist> listaPlaylists() {
+        return (List<Playlist>) repo.findAll();
 
     }
 
     // método GET por ID
-    @GetMapping("/usuario/{id}")
-    public Optional<Usuario> RecuperaUsuarioPeloId(@PathVariable("id") Long id) {
+    @GetMapping("/playlist/{id}")
+    public Optional<Playlist> RecuperaPlaylistPeloId(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
     //método DELETE
 
-    @DeleteMapping("/deletarUsuario/{id}")
-    public void DeletarUsuarioPeloId(@PathVariable("id") Long id) {
+    @DeleteMapping("/deletarPlaylist/{id}")
+    public void DeletarPlaylistPeloId(@PathVariable("id") Long id) {
         repo.deleteById(id);
         
     }
 
     // método POST
 
-    @PostMapping("/usuario")
-    public void addUsuario(@RequestBody Usuario usuario) {
-        repo.save(usuario);
+    @PostMapping("/playlist")
+    public void addPlaylist(@RequestBody Playlist playlist) {
+        repo.save(playlist);
     }
 }
