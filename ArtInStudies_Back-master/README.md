@@ -1,1 +1,0 @@
-# ArtInStudies-back

@@ -47,4 +47,12 @@ UsuarioRepository repo;
     public void addUsuario(@RequestBody Usuario usuario) {
         repo.save(usuario);
     }
+
+    public String getPassword() {
+        return null;
+    }
+
+    public String getUsername() {
+        return null;
+    }
 }

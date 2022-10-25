@@ -1,6 +1,0 @@
-@DeleteMapping("/livro/deletar_livro/{id}")
-    public Livro DeletarLivroPeloId(@PathVariable("id") int id){
-        return LivroRepository.deletById(id);
-    }
-    
-    //adicionar ao LivroController
